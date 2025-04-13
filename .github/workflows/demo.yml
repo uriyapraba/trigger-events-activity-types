@@ -2,9 +2,24 @@ name: Activity Types
 # Use different trigger type to run workflow Ex. pull_request
 on:
   pull_request:
-    types:
+    types:     # Activity types
       - opened
+    branches:   # target branch
+      - master
+      - dev
+      - feature-*   # feature-one feature-two
+      - feat/**     # feat/new feat/new/two
   workflow_dispatch:
+  push:
+    # Filter
+    branches:
+      - master
+      - dev
+      - feature-*   # feature-one feature-two
+      - feat/**     # feat/new feat/new/two
+    paths-ignore:
+      - '.github/workflows/*'
+
 jobs:
   pull_request:
     runs-on: ubuntu-latest
